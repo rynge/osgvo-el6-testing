@@ -79,9 +79,12 @@ RUN yum -y install \
 RUN rpm -Uvh https://developer.download.nvidia.com/compute/cuda/repos/rhel6/x86_64/cuda-repo-rhel6-9.0.176-1.x86_64.rpm \
     && yum -y clean all \
     && yum -y install cuda cuda-9-0 cuda-8-0 \
+    && curl -fsSL http://developer.download.nvidia.com/compute/redist/cudnn/v7.0.4/cudnn-8.0-linux-x64-v7.tgz -O \
+    && tar --no-same-owner -xzf cudnn-8.0-linux-x64-v7.tgz -C /usr/local \
+    && rm -f cudnn-8.0-linux-x64-v7.tgz \
     && curl -fsSL http://developer.download.nvidia.com/compute/redist/cudnn/v7.0.4/cudnn-9.0-linux-x64-v7.tgz -O \
     && tar --no-same-owner -xzf cudnn-9.0-linux-x64-v7.tgz -C /usr/local \
-    && rm cudnn-9.0-linux-x64-v7.tgz \
+    && rm -f cudnn-9.0-linux-x64-v7.tgz \
     && ldconfig
 
 # osg
